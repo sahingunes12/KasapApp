@@ -1,4 +1,158 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# 🏠 KasapApp
+
+**KasapApp** - Dini kurban hizmetleri için kapsamlı mobil uygulama.
+
+## 📱 Proje Hakkında
+
+KasapApp, kullanıcıları kasap hizmetleri ile buluşturan, dini kurban hizmetleri (Kurban, Adak, Şükür) için tasarlanmış kapsamlı bir mobil uygulamadır. Uygulama sipariş yerleştirmeden teslimata, bağış seçeneklerinden randevu planlamaya, görsel kanıtlardan ödeme işlemlerine kadar eksiksiz bir çözüm sunar.
+
+## 🌟 Özellikler
+
+### 🛒 Sipariş Yönetimi
+- Kurban, Adak, Şükür hizmet seçenekleri
+- Kişisel, Hayır, Restaurant, Afrika teslimat seçenekleri
+- Özel notlar (500 karaktere kadar)
+- Sipariş durumu takibi
+
+### 📅 Randevu Planlama
+- Takvim arayüzü ile uygun zaman dilimi seçimi
+- Kapasite yönetimi ile randevu rezervasyonu
+- Randevu iptal ve yeniden planlama
+- Hatırlatıcılar ve bildirimler
+
+### 💳 Ödeme İşlemleri
+- PayPal, IBAN transferi, yerel ödeme seçenekleri
+- Güvenli ödeme işlemi
+- Ödeme onayı ve makbuz oluşturma
+- Ödeme geçmişi takibi
+
+### 📸 Medya ve Kanıt
+- Tamamlanan hizmetlerin video ve fotoğraf kanıtları
+- Tam ekran görüntüleme ile medya galerisi
+- Medya paylaşım işlevselliği
+- Hizmet tamamlandıktan sonra otomatik medya yükleme
+
+### 🎁 Bağış Sistemi
+- Hayır kurumu seçimi
+- Bağış makbuzu oluşturma (PDF)
+- E-posta ile makbuz teslimi
+- Bağış durumu takibi
+
+## 🚀 Teknolojiler
+
+- **Frontend**: React Native with TypeScript
+- **State Management**: Zustand
+- **Styling**: NativeWind (Tailwind CSS)
+- **Navigation**: React Navigation v6
+- **Backend**: Supabase (PostgreSQL, Auth, Storage)
+- **Payment**: PayPal SDK, IBAN transfer
+- **Notifications**: Expo Push Notifications
+- **Media**: Supabase Storage
+- **PDF Generation**: react-native-pdf-lib
+- **Internationalization**: react-i18next
+
+## 📱 Platform Desteği
+
+- ✅ **iOS**: iPhone ve iPad
+- ✅ **Android**: Tüm Android cihazlar
+- ✅ **Web**: Tarayıcı desteği
+
+## 🎯 Demo
+
+**Live Demo**: https://sahingunes12.github.io/KasapApp
+
+## 📦 Kurulum
+
+### Gereksinimler
+- Node.js 18+
+- React Native CLI
+- Xcode (iOS için)
+- Android Studio (Android için)
+
+### Adımlar
+
+1. **Repository'yi klonlayın**
+```bash
+git clone https://github.com/sahingunes12/KasapApp.git
+cd KasapApp
+```
+
+2. **Bağımlılıkları yükleyin**
+```bash
+npm install
+```
+
+3. **iOS için CocoaPods yükleyin**
+```bash
+cd ios && pod install && cd ..
+```
+
+4. **Uygulamayı başlatın**
+
+**Web için:**
+```bash
+npm run web:dev
+```
+
+**iOS için:**
+```bash
+npm run ios
+```
+
+**Android için:**
+```bash
+npm run android
+```
+
+## 🛠️ Geliştirme
+
+### Komutlar
+
+```bash
+# Web development
+npm run web:dev
+
+# iOS development
+npm run ios
+
+# Android development
+npm run android
+
+# Build web
+npm run build:web
+
+# Deploy to GitHub Pages
+npm run deploy
+
+# Test
+npm test
+```
+
+## 📄 Lisans
+
+Bu proje [MIT Lisansı](LICENSE) altında lisanslanmıştır.
+
+## 🤝 Katkıda Bulunma
+
+1. Bu repository'yi fork edin
+2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
+3. Değişikliklerinizi commit edin (`git commit -m 'Add amazing feature'`)
+4. Branch'inizi push edin (`git push origin feature/amazing-feature`)
+5. Pull Request oluşturun
+
+## 📞 İletişim
+
+- **Telefon**: +90 555 123 45 67
+- **E-posta**: info@kasapapp.com
+- **Adres**: İstanbul, Türkiye
+
+## 🙏 Teşekkürler
+
+Bu proje açık kaynak topluluğunun katkılarıyla geliştirilmiştir.
+
+---
+
+**KasapApp** - Dini kurban hizmetleri için güvenilir platform 🏠
 
 # Getting Started
 
