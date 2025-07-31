@@ -69,21 +69,21 @@
   - _Requirements: Requirement 7, Requirement 10_
 
 ## Phase 3: Calendar and Appointment System
-- [ ] 3.1 Implement calendar backend and database
+- [x] 3.1 Implement calendar backend and database
   - Create time_slots and appointments tables
   - Implement CalendarService with slot management
   - Set up appointment booking logic with capacity management
   - Create appointment validation and conflict prevention
   - _Requirements: Requirement 4_
 
-- [ ] 3.2 Build calendar UI and appointment booking
+- [x] 3.2 Build calendar UI and appointment booking
   - Create calendar component with available/unavailable slots visualization
   - Implement date and time slot selection interface
   - Add appointment confirmation and booking flow
   - Create appointment details and management screens
   - _Requirements: Requirement 4_
 
-- [ ] 3.3 Integrate appointments with order system
+- [x] 3.3 Integrate appointments with order system
   - Link appointments to orders during order creation
   - Implement appointment cancellation functionality
   - Add appointment reminders system foundation

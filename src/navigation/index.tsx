@@ -12,7 +12,8 @@ import {
   ForgotPasswordScreen,
   HomeScreen,
   OrderDetailsScreen,
-  OrderConfirmationScreen
+  OrderConfirmationScreen,
+  CalendarScreen
 } from '@/screens';
 import { DrawerNavigator } from './DrawerNavigator';
 import { ROUTES } from '@/constants';
@@ -80,7 +81,7 @@ const MainTabNavigator = () => {
       />
       <Tab.Screen 
         name="Calendar" 
-        component={() => <Loading text="Takvim yükleniyor..." fullScreen />} 
+        component={CalendarScreen} 
         options={{
           title: 'Takvim',
         }}

@@ -221,30 +221,30 @@ export interface Database {
       appointments: {
         Row: {
           id: string;
-          order_id: string;
+          order_id: string | null;
           time_slot_id: string;
           user_id: string;
-          status: string;
+          status: 'PENDING' | 'CONFIRMED' | 'CANCELLED' | 'COMPLETED';
           notes: string | null;
           created_at: string;
           updated_at: string;
         };
         Insert: {
           id?: string;
-          order_id: string;
+          order_id?: string | null;
           time_slot_id: string;
           user_id: string;
-          status?: string;
+          status?: 'PENDING' | 'CONFIRMED' | 'CANCELLED' | 'COMPLETED';
           notes?: string | null;
           created_at?: string;
           updated_at?: string;
         };
         Update: {
           id?: string;
-          order_id?: string;
+          order_id?: string | null;
           time_slot_id?: string;
           user_id?: string;
-          status?: string;
+          status?: 'PENDING' | 'CONFIRMED' | 'CANCELLED' | 'COMPLETED';
           notes?: string | null;
           created_at?: string;
           updated_at?: string;
@@ -347,6 +347,7 @@ export interface Database {
       payment_status: 'pending' | 'completed' | 'failed' | 'refunded';
       user_role: 'customer' | 'butcher' | 'admin';
       language: 'tr' | 'en' | 'ar';
+      appointment_status: 'PENDING' | 'CONFIRMED' | 'CANCELLED' | 'COMPLETED';
     };
   };
 } 
