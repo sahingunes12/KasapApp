@@ -16,7 +16,7 @@
     "build:web": "vite build",
     "preview": "vite preview",
     "dev": "concurrently \"npm start\" \"npm run ios\" \"npm run android\"",
-    "predeploy": "npm run build:web",
+    "predeploy": "REACT_APP_SUPABASE_URL=https://xyegvmollnggoiwivxie.supabase.co REACT_APP_SUPABASE_ANON_KEY=sb_publishable_O5L7vS_hpNjEx1m4PPcncg_v4pbEpTT npm run build:web",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
