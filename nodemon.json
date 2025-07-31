@@ -1,0 +1,22 @@
+{
+  "watch": [
+    "src/**/*",
+    "App.tsx",
+    "vite.config.js",
+    "tailwind.config.js",
+    "babel.config.js"
+  ],
+  "ext": "ts,tsx,js,jsx,json",
+  "ignore": [
+    "node_modules/**/*",
+    "dist/**/*",
+    "build/**/*",
+    ".git/**/*"
+  ],
+  "exec": "npm run web",
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "delay": 1000,
+  "restartable": "rs"
+} 

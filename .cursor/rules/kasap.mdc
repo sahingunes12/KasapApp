@@ -1,0 +1,436 @@
+---
+alwaysApply: true
+---
+
+# Project Name: KasapApp
+# Type: React Native (Cross-platform mobile app)
+
+## PROJECT OVERVIEW
+KasapApp is a comprehensive mobile application that connects users with butcher services for religious sacrificial offerings (Kurban, Adak, Şükür). The app provides a complete solution from order placement to delivery, including donation options, appointment scheduling, visual proof of service, and payment processing. The application serves both local delivery and international donation needs, particularly for Africa-based charitable distributions.
+
+## GENERAL PRINCIPLES
+- This is a mobile application named **KasapApp**, designed for butchers and customers to interact.
+- Code must be **modular, readable and reusable**. Follow **Clean Architecture** and **SOLID** principles where applicable.
+- Use **TypeScript** only. No JavaScript allowed.
+- All state management must be handled with **Zustand** (not Redux, not Context API).
+- Use **React Navigation (v6)** for routing.
+- For UI components, prefer **NativeWind (Tailwind CSS for React Native)**. Avoid inline styles unless necessary.
+- All API interactions must be isolated in a `/services` directory.
+- Use Axios for HTTP requests. All endpoints should be typed and reusable.
+
+## TECHNOLOGY STACK
+- **Frontend**: React Native with TypeScript
+- **State Management**: Zustand for global state
+- **Styling**: NativeWind (Tailwind CSS for React Native)
+- **Navigation**: React Navigation v6
+- **Backend**: Supabase (PostgreSQL, Auth, Storage, Real-time)
+- **Payment**: PayPal SDK, IBAN transfer, local payment integrations
+- **Notifications**: Expo Push Notifications
+- **Media**: Supabase Storage with image/video optimization
+- **PDF Generation**: react-native-pdf-lib for receipts
+- **Internationalization**: react-i18next
+
+## NAMING & STRUCTURE
+- Use `camelCase` for variables and functions.
+- Use `PascalCase` for components, screens, models.
+- Directory structure should follow this convention:
+  ```
+  src/
+  ├── components/     # Reusable UI components
+  ├── screens/        # Screen components
+  ├── services/       # API and business logic
+  ├── hooks/          # Custom React hooks
+  ├── stores/         # Zustand stores
+  ├── types/          # TypeScript type definitions
+  ├── utils/          # Utility functions
+  ├── constants/      # App constants
+  └── assets/         # Images, fonts, etc.
+  ```
+
+## CORE FUNCTIONAL REQUIREMENTS
+
+### User Types
+- **Customers**: End users who place orders and track services
+- **Butchers**: Service providers who manage orders and upload media
+- **Admin**: Moderators who approve reviews and manage content
+
+### Customer Features
+1. **Authentication & Profile**
+   - Register/login with email and password using Supabase Auth
+   - User profile management with language preferences
+   - Session persistence across app restarts
+
+2. **Order Management**
+   - Select service types: Kurban, Adak, Şükür
+   - Choose delivery options: Personal, Charity, Restaurant, Africa
+   - Add special notes (up to 500 characters)
+   - Track order status with timeline visualization
+   - View order history and details
+
+3. **Appointment Scheduling**
+   - Calendar interface with available time slots
+   - Book appointments with capacity management
+   - Cancel and reschedule appointments
+   - Appointment reminders and notifications
+
+4. **Payment Processing**
+   - Multiple payment methods: PayPal, IBAN transfer, local options
+   - Secure payment processing with error handling
+   - Payment confirmation and receipt generation
+   - Payment history tracking
+
+5. **Media & Proof**
+   - Receive video and photo evidence of completed services
+   - Media gallery with full-screen viewing
+   - Media sharing functionality
+   - Automatic media upload after service completion
+
+6. **Donation System**
+   - Charity organization selection
+   - Donation receipt generation (PDF)
+   - Email delivery of receipts
+   - Donation status tracking
+
+7. **Review System (Africa Users)**
+   - Submit reviews with anonymous/named options
+   - Admin moderation system
+   - Display approved reviews publicly
+
+8. **Notifications**
+   - Push notifications for order status changes
+   - Email notifications as backup
+   - Media availability notifications
+   - Appointment reminders
+
+### Butcher Features
+- List available products and services
+- Manage orders (approve, reject, mark as ready)
+- Upload media proof (videos and photos)
+- Receive notifications on new orders
+- View order details and customer information
+
+## DATABASE SCHEMA
+
+### Core Tables
+- **users**: User authentication and basic info
+- **user_profiles**: Extended user information
+- **orders**: Order details and status tracking
+- **appointments**: Scheduled appointments
+- **time_slots**: Available time slots
+- **media_files**: Uploaded media files
+- **reviews**: User reviews and ratings
+- **charity_organizations**: Available charities
+
+### Key Relationships
+- Orders belong to users
+- Appointments are linked to orders
+- Media files are associated with orders
+- Reviews are linked to orders and users
+
+## ERROR HANDLING STRATEGY
+
+### Error Types
+1. **Network Errors**: Implement retry mechanism with exponential backoff
+2. **Validation Errors**: Field-specific error messages with proper validation
+3. **Payment Errors**: Secure error handling without exposing sensitive data
+4. **Media Upload Errors**: File size and type validation with user feedback
+
+### Error Handling Principles
+- Never expose sensitive information in error messages
+- Provide user-friendly error messages
+- Implement proper logging for debugging
+- Handle offline scenarios gracefully
+
+## TESTING STRATEGY
+
+### Testing Levels
+1. **Unit Testing**: Jest + React Native Testing Library for components and services
+2. **Integration Testing**: Database operations and API integration
+3. **End-to-End Testing**: Detox for complete user flows
+4. **Performance Testing**: Load testing and memory optimization
+5. **Security Testing**: Authentication, validation, and file upload security
+
+### Testing Coverage
+- All service functions and utility functions
+- Custom hooks and state management
+- Screen components and navigation flows
+- Payment processing and media upload
+- Error handling and edge cases
+
+## PERFORMANCE & SECURITY
+
+### Performance Optimization
+- Implement lazy loading for screens and components
+- Use FlatList for large data sets
+- Optimize images and videos for mobile viewing
+- Implement proper caching strategies
+- Monitor memory usage and prevent leaks
+
+### Security Best Practices
+- Implement proper authentication flows with JWT tokens
+- Use secure storage for sensitive data
+- Validate and sanitize all user inputs
+- Implement proper error handling without exposing sensitive information
+- Use HTTPS for all API communications
+- Implement file upload security measures
+
+## INTERNATIONALIZATION
+
+### Language Support
+- Turkish (primary)
+- English (secondary)
+- Arabic (future - RTL support)
+
+### Implementation
+- Use react-i18next for translations
+- Support RTL languages properly
+- Format dates, numbers, and currencies based on locale
+- Implement proper text scaling
+
+## OFFLINE SUPPORT
+- Cache critical data using AsyncStorage
+- Queue actions when offline and sync when online
+- Show appropriate offline indicators
+- Handle network errors gracefully
+
+## OTHER RULES
+- Do not auto-generate meaningless variables like `foo`, `bar`, or `temp`. Always use meaningful names.
+- Never use `any` type in TypeScript.
+- Comment complex logic and business rules.
+- Keep screens lean; move business logic to services or hooks.
+- Avoid magic numbers and strings – use enums or constants.
+- Implement proper accessibility features (labels, screen readers, color contrast).
+- Follow mobile-first design principles.
+- Ensure proper error boundaries and crash reporting.
+
+## DON'Ts for Cursor AI
+- Don't use Expo; this is a bare React Native CLI project.
+- Don't install unnecessary packages without approval.
+- Don't include Firebase – we will use Supabase for backend and authentication.
+- Don't refactor code unless explicitly asked.
+- Don't change directory structure unless asked.
+- Don't use Redux or Context API for state management - use Zustand only.
+- Don't implement inline styles - prefer NativeWind classes.
+- Don't use JavaScript - TypeScript only.
+- Don't expose sensitive information in error messages or logs.
+- Don't skip proper validation and error handling.
+
+
+- Don’t change directory structure unless asked.
+
+# Project Name: KasapApp
+# Type: React Native (Cross-platform mobile app)
+
+## PROJECT OVERVIEW
+KasapApp is a comprehensive mobile application that connects users with butcher services for religious sacrificial offerings (Kurban, Adak, Şükür). The app provides a complete solution from order placement to delivery, including donation options, appointment scheduling, visual proof of service, and payment processing. The application serves both local delivery and international donation needs, particularly for Africa-based charitable distributions.
+
+## GENERAL PRINCIPLES
+- This is a mobile application named **KasapApp**, designed for butchers and customers to interact.
+- Code must be **modular, readable and reusable**. Follow **Clean Architecture** and **SOLID** principles where applicable.
+- Use **TypeScript** only. No JavaScript allowed.
+- All state management must be handled with **Zustand** (not Redux, not Context API).
+- Use **React Navigation (v6)** for routing.
+- For UI components, prefer **NativeWind (Tailwind CSS for React Native)**. Avoid inline styles unless necessary.
+- All API interactions must be isolated in a `/services` directory.
+- Use Axios for HTTP requests. All endpoints should be typed and reusable.
+
+## TECHNOLOGY STACK
+- **Frontend**: React Native with TypeScript
+- **State Management**: Zustand for global state
+- **Styling**: NativeWind (Tailwind CSS for React Native)
+- **Navigation**: React Navigation v6
+- **Backend**: Supabase (PostgreSQL, Auth, Storage, Real-time)
+- **Payment**: PayPal SDK, IBAN transfer, local payment integrations
+- **Notifications**: Expo Push Notifications
+- **Media**: Supabase Storage with image/video optimization
+- **PDF Generation**: react-native-pdf-lib for receipts
+- **Internationalization**: react-i18next
+
+## NAMING & STRUCTURE
+- Use `camelCase` for variables and functions.
+- Use `PascalCase` for components, screens, models.
+- Directory structure should follow this convention:
+  ```
+  src/
+  ├── components/     # Reusable UI components
+  ├── screens/        # Screen components
+  ├── services/       # API and business logic
+  ├── hooks/          # Custom React hooks
+  ├── stores/         # Zustand stores
+  ├── types/          # TypeScript type definitions
+  ├── utils/          # Utility functions
+  ├── constants/      # App constants
+  └── assets/         # Images, fonts, etc.
+  ```
+
+## CORE FUNCTIONAL REQUIREMENTS
+
+### User Types
+- **Customers**: End users who place orders and track services
+- **Butchers**: Service providers who manage orders and upload media
+- **Admin**: Moderators who approve reviews and manage content
+
+### Customer Features
+1. **Authentication & Profile**
+   - Register/login with email and password using Supabase Auth
+   - User profile management with language preferences
+   - Session persistence across app restarts
+
+2. **Order Management**
+   - Select service types: Kurban, Adak, Şükür
+   - Choose delivery options: Personal, Charity, Restaurant, Africa
+   - Add special notes (up to 500 characters)
+   - Track order status with timeline visualization
+   - View order history and details
+
+3. **Appointment Scheduling**
+   - Calendar interface with available time slots
+   - Book appointments with capacity management
+   - Cancel and reschedule appointments
+   - Appointment reminders and notifications
+
+4. **Payment Processing**
+   - Multiple payment methods: PayPal, IBAN transfer, local options
+   - Secure payment processing with error handling
+   - Payment confirmation and receipt generation
+   - Payment history tracking
+
+5. **Media & Proof**
+   - Receive video and photo evidence of completed services
+   - Media gallery with full-screen viewing
+   - Media sharing functionality
+   - Automatic media upload after service completion
+
+6. **Donation System**
+   - Charity organization selection
+   - Donation receipt generation (PDF)
+   - Email delivery of receipts
+   - Donation status tracking
+
+7. **Review System (Africa Users)**
+   - Submit reviews with anonymous/named options
+   - Admin moderation system
+   - Display approved reviews publicly
+
+8. **Notifications**
+   - Push notifications for order status changes
+   - Email notifications as backup
+   - Media availability notifications
+   - Appointment reminders
+
+### Butcher Features
+- List available products and services
+- Manage orders (approve, reject, mark as ready)
+- Upload media proof (videos and photos)
+- Receive notifications on new orders
+- View order details and customer information
+
+## DATABASE SCHEMA
+
+### Core Tables
+- **users**: User authentication and basic info
+- **user_profiles**: Extended user information
+- **orders**: Order details and status tracking
+- **appointments**: Scheduled appointments
+- **time_slots**: Available time slots
+- **media_files**: Uploaded media files
+- **reviews**: User reviews and ratings
+- **charity_organizations**: Available charities
+
+### Key Relationships
+- Orders belong to users
+- Appointments are linked to orders
+- Media files are associated with orders
+- Reviews are linked to orders and users
+
+## ERROR HANDLING STRATEGY
+
+### Error Types
+1. **Network Errors**: Implement retry mechanism with exponential backoff
+2. **Validation Errors**: Field-specific error messages with proper validation
+3. **Payment Errors**: Secure error handling without exposing sensitive data
+4. **Media Upload Errors**: File size and type validation with user feedback
+
+### Error Handling Principles
+- Never expose sensitive information in error messages
+- Provide user-friendly error messages
+- Implement proper logging for debugging
+- Handle offline scenarios gracefully
+
+## TESTING STRATEGY
+
+### Testing Levels
+1. **Unit Testing**: Jest + React Native Testing Library for components and services
+2. **Integration Testing**: Database operations and API integration
+3. **End-to-End Testing**: Detox for complete user flows
+4. **Performance Testing**: Load testing and memory optimization
+5. **Security Testing**: Authentication, validation, and file upload security
+
+### Testing Coverage
+- All service functions and utility functions
+- Custom hooks and state management
+- Screen components and navigation flows
+- Payment processing and media upload
+- Error handling and edge cases
+
+## PERFORMANCE & SECURITY
+
+### Performance Optimization
+- Implement lazy loading for screens and components
+- Use FlatList for large data sets
+- Optimize images and videos for mobile viewing
+- Implement proper caching strategies
+- Monitor memory usage and prevent leaks
+
+### Security Best Practices
+- Implement proper authentication flows with JWT tokens
+- Use secure storage for sensitive data
+- Validate and sanitize all user inputs
+- Implement proper error handling without exposing sensitive information
+- Use HTTPS for all API communications
+- Implement file upload security measures
+
+## INTERNATIONALIZATION
+
+### Language Support
+- Turkish (primary)
+- English (secondary)
+- Arabic (future - RTL support)
+
+### Implementation
+- Use react-i18next for translations
+- Support RTL languages properly
+- Format dates, numbers, and currencies based on locale
+- Implement proper text scaling
+
+## OFFLINE SUPPORT
+- Cache critical data using AsyncStorage
+- Queue actions when offline and sync when online
+- Show appropriate offline indicators
+- Handle network errors gracefully
+
+## OTHER RULES
+- Do not auto-generate meaningless variables like `foo`, `bar`, or `temp`. Always use meaningful names.
+- Never use `any` type in TypeScript.
+- Comment complex logic and business rules.
+- Keep screens lean; move business logic to services or hooks.
+- Avoid magic numbers and strings – use enums or constants.
+- Implement proper accessibility features (labels, screen readers, color contrast).
+- Follow mobile-first design principles.
+- Ensure proper error boundaries and crash reporting.
+
+## DON'Ts for Cursor AI
+- Don't use Expo; this is a bare React Native CLI project.
+- Don't install unnecessary packages without approval.
+- Don't include Firebase – we will use Supabase for backend and authentication.
+- Don't refactor code unless explicitly asked.
+- Don't change directory structure unless asked.
+- Don't use Redux or Context API for state management - use Zustand only.
+- Don't implement inline styles - prefer NativeWind classes.
+- Don't use JavaScript - TypeScript only.
+- Don't expose sensitive information in error messages or logs.
+- Don't skip proper validation and error handling.
+
+
+- Don’t change directory structure unless asked.
+
