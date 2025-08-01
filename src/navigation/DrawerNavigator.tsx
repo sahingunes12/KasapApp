@@ -2,7 +2,7 @@ import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Ionicons } from '@expo/vector-icons';
 import { Loading } from '@/components';
-import { HomeScreen } from '@/screens';
+import { HomeScreen, CalendarScreen } from '@/screens';
 
 const Drawer = createDrawerNavigator();
 
@@ -11,7 +11,7 @@ export const DrawerNavigator = () => {
     <Drawer.Navigator
       screenOptions={({ route }) => ({
         drawerIcon: ({ focused, color, size }) => {
-          let iconName: keyof typeof Ionicons.glyphMap;
+          let iconName;
 
           if (route.name === 'Home') {
             iconName = focused ? 'home' : 'home-outline';
@@ -63,7 +63,7 @@ export const DrawerNavigator = () => {
       />
       <Drawer.Screen 
         name="Calendar" 
-        component={() => <Loading text="Takvim yükleniyor..." fullScreen />} 
+        component={CalendarScreen} 
         options={{
           title: 'Takvim',
           drawerLabel: 'Takvim',

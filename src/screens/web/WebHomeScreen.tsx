@@ -3,6 +3,8 @@ import { View, Text, ScrollView, TouchableOpacity, SafeAreaView } from 'react-na
 import { WebButton } from '@/components/web/WebButton';
 import { WebCard } from '@/components/web/WebCard';
 import { WebLoading } from '@/components/web/WebLoading';
+import { WebCalendar } from '@/components/web/WebCalendar';
+import { WebAuth } from '@/components/web/WebAuth';
 
 const SERVICE_TYPES = {
   KURBAN: {
@@ -28,6 +30,9 @@ const SERVICE_TYPES = {
 export const WebHomeScreen = () => {
   const [selectedService, setSelectedService] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentView, setCurrentView] = useState('home');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
 
   const handleServiceSelect = (serviceType) => {
     setSelectedService(serviceType);
@@ -40,25 +45,76 @@ export const WebHomeScreen = () => {
     }, 1000);
   };
 
+  const handleLogin = (email) => {
+    setCurrentUser(email);
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    setCurrentUser(null);
+    setIsAuthenticated(false);
+    setCurrentView('home');
+  };
+
   const handleQuickAction = (action) => {
-    alert(`${action} sayfasına yönlendiriliyorsunuz...`);
+    if (!isAuthenticated) {
+      alert('Bu özelliği kullanmak için lütfen giriş yapın.');
+      return;
+    }
+
+    switch(action) {
+      case 'Takvim':
+        setCurrentView('calendar');
+        break;
+      case 'Siparişlerim':
+        alert('✅ Sipariş takibi mobil uygulamada mevcut! Siparişlerinizi görüntülemek için mobil uygulamayı indirin.');
+        break;
+      case 'Medya':
+        alert('✅ Medya galeri mobil uygulamada mevcut! Fotoğraf ve videolar için mobil uygulamayı indirin.');
+        break;
+      default:
+        alert(`${action} özelliği mobil uygulamada mevcuttur.`);
+    }
   };
 
   if (isLoading) {
     return <WebLoading text="Hizmet yükleniyor..." fullScreen />;
   }
 
+  if (!isAuthenticated) {
+    return <WebAuth onLogin={handleLogin} />;
+  }
+
+  if (currentView === 'calendar') {
+    return <WebCalendar onBack={() => setCurrentView('home')} />;
+  }
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#f9fafb' }}>
       <ScrollView style={{ flex: 1, padding: 16 }}>
         {/* Header */}
-        <View style={{ marginBottom: 24 }}>
-          <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#111827', marginBottom: 8 }}>
-            🏠 Hoş Geldiniz
-          </Text>
-          <Text style={{ fontSize: 16, color: '#6b7280' }}>
-            Hangi hizmet türünü tercih ediyorsunuz?
-          </Text>
+        <View style={{ marginBottom: 24, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <View>
+            <Text style={{ fontSize: 28, fontWeight: 'bold', color: '#111827', marginBottom: 8 }}>
+              🏠 Hoş Geldiniz
+            </Text>
+            <Text style={{ fontSize: 16, color: '#6b7280' }}>
+              Merhaba {currentUser}! Hangi hizmet türünü tercih ediyorsunuz?
+            </Text>
+          </View>
+          <TouchableOpacity
+            onPress={handleLogout}
+            style={{
+              backgroundColor: '#ef4444',
+              paddingHorizontal: 16,
+              paddingVertical: 8,
+              borderRadius: 6,
+            }}
+          >
+            <Text style={{ color: 'white', fontSize: 14, fontWeight: '600' }}>
+              Çıkış
+            </Text>
+          </TouchableOpacity>
         </View>
 
         {/* Service Selection */}

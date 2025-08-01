@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
+// IMPORTANT: Port is fixed to prevent constant restarts during development
 export default defineConfig({
   plugins: [react()],
   base: '/KasapApp/',
@@ -14,9 +15,13 @@ export default defineConfig({
   },
   server: {
     port: 8923,
+    strictPort: true,
     open: true,
     watch: {
       usePolling: true,
+    },
+    hmr: {
+      port: 8924,
     },
   },
   build: {
@@ -31,6 +36,9 @@ export default defineConfig({
     loader: 'jsx',
     include: /.*\.[tj]sx?$/,
     exclude: [],
+    target: 'es2020',
+    keepNames: true,
+    logLevel: 'silent',
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-native-web'],

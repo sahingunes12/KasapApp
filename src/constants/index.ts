@@ -11,13 +11,13 @@ export const SERVICE_TYPES = {
   KURBAN: 'kurban',
   ADAK: 'adak',
   SUKUR: 'sukur',
-} as const;
+};
 
 export const SERVICE_TYPE_LABELS = {
   [SERVICE_TYPES.KURBAN]: 'Kurban',
   [SERVICE_TYPES.ADAK]: 'Adak',
   [SERVICE_TYPES.SUKUR]: 'Şükür',
-} as const;
+};
 
 // Delivery Types
 export const DELIVERY_TYPES = {
@@ -25,14 +25,14 @@ export const DELIVERY_TYPES = {
   CHARITY: 'charity',
   RESTAURANT: 'restaurant',
   AFRICA: 'africa',
-} as const;
+};
 
 export const DELIVERY_TYPE_LABELS = {
   [DELIVERY_TYPES.PERSONAL]: 'Kişisel Teslimat',
   [DELIVERY_TYPES.CHARITY]: 'Bağış',
   [DELIVERY_TYPES.RESTAURANT]: 'Restoran',
   [DELIVERY_TYPES.AFRICA]: 'Afrika Dağıtımı',
-} as const;
+};
 
 // Order Status
 export const ORDER_STATUS = {
@@ -42,7 +42,7 @@ export const ORDER_STATUS = {
   COMPLETED: 'completed',
   DELIVERED: 'delivered',
   DONATED: 'donated',
-} as const;
+};
 
 export const ORDER_STATUS_LABELS = {
   [ORDER_STATUS.PENDING]: 'Beklemede',
@@ -51,33 +51,33 @@ export const ORDER_STATUS_LABELS = {
   [ORDER_STATUS.COMPLETED]: 'Tamamlandı',
   [ORDER_STATUS.DELIVERED]: 'Teslim Edildi',
   [ORDER_STATUS.DONATED]: 'Bağışlandı',
-} as const;
+};
 
 // Payment Methods
 export const PAYMENT_METHODS = {
   PAYPAL: 'paypal',
   IBAN: 'iban',
   LOCAL: 'local',
-} as const;
+};
 
 export const PAYMENT_METHOD_LABELS = {
   [PAYMENT_METHODS.PAYPAL]: 'PayPal',
   [PAYMENT_METHODS.IBAN]: 'IBAN Transfer',
   [PAYMENT_METHODS.LOCAL]: 'Yerel Ödeme',
-} as const;
+};
 
 // Languages
 export const LANGUAGES = {
   TURKISH: 'tr',
   ENGLISH: 'en',
   ARABIC: 'ar',
-} as const;
+};
 
 export const LANGUAGE_LABELS = {
   [LANGUAGES.TURKISH]: 'Türkçe',
   [LANGUAGES.ENGLISH]: 'English',
   [LANGUAGES.ARABIC]: 'العربية',
-} as const;
+};
 
 // Validation Constants
 export const VALIDATION = {
@@ -86,7 +86,7 @@ export const VALIDATION = {
   MAX_FILE_SIZE: 50 * 1024 * 1024, // 50MB
   ALLOWED_IMAGE_TYPES: ['image/jpeg', 'image/png'],
   ALLOWED_VIDEO_TYPES: ['video/mp4', 'video/mov'],
-} as const;
+};
 
 // Error Messages
 export const ERROR_MESSAGES = {
@@ -100,7 +100,7 @@ export const ERROR_MESSAGES = {
   INVALID_FILE_TYPE: 'Geçersiz dosya türü.',
   PAYMENT_FAILED: 'Ödeme başarısız. Lütfen tekrar deneyin.',
   ORDER_CREATION_FAILED: 'Sipariş oluşturulamadı. Lütfen tekrar deneyin.',
-} as const;
+};
 
 // Success Messages
 export const SUCCESS_MESSAGES = {
@@ -110,7 +110,7 @@ export const SUCCESS_MESSAGES = {
   PAYMENT_SUCCESS: 'Ödeme başarıyla tamamlandı.',
   PROFILE_UPDATED: 'Profil başarıyla güncellendi.',
   APPOINTMENT_BOOKED: 'Randevu başarıyla rezerve edildi.',
-} as const;
+};
 
 // Navigation Constants
 export const ROUTES = {
@@ -128,4 +128,4 @@ export const ROUTES = {
   ORDER_DETAILS: 'OrderDetails',
   PAYMENT: 'Payment',
   ORDER_CONFIRMATION: 'OrderConfirmation',
-} as const; 
+}; 

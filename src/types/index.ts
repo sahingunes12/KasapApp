@@ -52,22 +52,37 @@ export interface CreateOrderRequest {
   charityOrganization?: string;
 }
 
-// Appointment Types
+// Appointment Types (Database-aligned)
 export interface TimeSlot {
   id: string;
-  date: Date;
-  startTime: string;
-  endTime: string;
-  isAvailable: boolean;
-  capacity: number;
-  bookedCount: number;
+  date: string;
+  start_time: string;
+  end_time: string;
+  max_capacity: number;
+  current_bookings: number;
+  is_available: boolean;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Appointment {
   id: string;
-  orderId: string;
-  timeSlot: TimeSlot;
-  status: 'scheduled' | 'completed' | 'cancelled';
+  user_id: string;
+  order_id?: string;
+  time_slot_id: string;
+  status: 'PENDING' | 'CONFIRMED' | 'CANCELLED' | 'COMPLETED';
+  notes?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AppointmentWithRelations extends Appointment {
+  time_slot: TimeSlot;
+  order?: {
+    id: string;
+    service_type: string;
+    delivery_type: string;
+  };
 }
 
 // Media Types
